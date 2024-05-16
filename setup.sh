@@ -60,7 +60,7 @@ if [ -z "$URL" ]; then
 fi
 
 if [ ! -z "$AUTH_TOKEN" ]; then
-    AUTH_HEADER="-H \"Authorization: Bearer $AUTH_TOKEN\" \\"
+    AUTH_HEADER="-H \"Authorization: Bearer $AUTH_TOKEN\""
 fi
 
 TOPIC_URL="$URL/$TOPIC"
