@@ -71,7 +71,7 @@ fi
 
 chmod 755 /usr/bin/ntfy-pam-alert.sh
 
-tee /usr/bin/ntfy-pam-alert.sh &> /dev/null << EOF
+tee /usr/bin/ntfy-pam-alert.sh << EOF
 #!/bin/bash
 
 NODE=$NODE
