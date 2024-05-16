@@ -12,7 +12,7 @@ Help()
     echo "a     Optional: Sets the authentication token. Only Bearer available."
     echo "h     Print this Help."
     echo "n     Optional: Sets the node name. Default: hostname is used"
-    echo "t     Required: Sets the topic name."
+    echo "t     Optional: Sets the topic name. Default: A prompt is shown"
     echo "u     Optional: Sets the ntfy server url. Default: ntfy.sh"
     echo
 }
@@ -48,9 +48,7 @@ while getopts "a::hn:t:u:" option; do
 done
 
 if [ -z "$TOPIC" ]; then
-    echo "Error: Missing Topic"
-    Help
-    exit
+    read -p "Topic: " TOPIC
 fi
 
 if [ -z "$NODE" ]; then
@@ -58,7 +56,7 @@ if [ -z "$NODE" ]; then
 fi
 
 if [ -z "$URL" ]; then
-    NODE="https://ntfy.sh"
+    URL="https://ntfy.sh"
 fi
 
 if [ ! -z "$AUTH_TOKEN" ]; then
@@ -73,7 +71,7 @@ fi
 
 chmod 755 /usr/bin/ntfy-pam-alert.sh
 
-tee /usr/bin/ntfy-pam-alert.sh &>/dev/null << EOF
+tee /usr/bin/ntfy-pam-alert.sh &> /dev/null << EOF
 #!/bin/bash
 
 NODE=$NODE
